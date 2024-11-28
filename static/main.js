@@ -80,7 +80,23 @@ function showBotMessage(message, datetime) {
  * Get input from user and show it on screen on button click.
  */
 $('#send_button').on('click', function (e) {
-	var user_input = $('#user_input').val()
+	
+	var user_input = $('#user_input').val();
+	if (user_input.trim() !== '') {
+		callAjax(user_input)
+	}else{
+		$('#user_input').focus();
+	}
+	
+});
+
+$(document).on('click', '.btn-list', function(){
+	var user_input = $(this).attr('query');
+	$('#user_input').val(user_input);
+	callAjax(user_input);
+});
+
+function callAjax(user_input){
 	$.ajax({
 		url: '/process',
 		type: 'POST',
@@ -100,38 +116,16 @@ $('#send_button').on('click', function (e) {
 			console.log(error);
 		}
 	});
-
-});
-
-/**
- * Returns a random string. Just to specify bot message to the user.
- */
-function randomstring(length = 20) {
-	let output = '';
-
-	// magic function
-	var randomchar = function () {
-		var n = Math.floor(Math.random() * 62);
-		if (n < 10) return n;
-		if (n < 36) return String.fromCharCode(n + 55);
-		return String.fromCharCode(n + 61);
-	};
-
-	while (output.length < length) output += randomchar();
-	return output;
 }
 
 /**
  * Set initial bot message to the screen for the user.
  */
 $(window).on('load', function () {
-	let first_message = '<button type="button" class="btn btn-outline-primary">Primary</button>\
-	<button type="button" class="btn btn-outline-secondary">Secondary</button>\
-	<button type="button" class="btn btn-outline-success">Success</button>\
-	<button type="button" class="btn btn-outline-danger">Danger</button>\
-	<button type="button" class="btn btn-outline-warning">Warning</button>\
-	<button type="button" class="btn btn-outline-info">Info</button>\
-	<button type="button" class="btn btn-outline-light">Light</button>\
-	<button type="button" class="btn btn-outline-dark">Dark</button>';
+	let first_message = 'Welcome 👋<br/>I am your Personal Assistant, How can I help you?';
+	let button_message = '<button type="button" query="leave balance" class="btn btn-primary btn-list pull-right">Leave Balance</button><br/>\
+	<button type="button" query="apply leave" class="btn btn-secondary btn-list pull-right">Apply Leave</button><br/>\
+	<button type="button" query="provision" class="btn btn-success btn-list pull-right">Deploy Ec2 install on AWS</button>';
 	showBotMessage(first_message);
+	showUserMessage(button_message);
 });

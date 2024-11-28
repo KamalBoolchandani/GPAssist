@@ -3,16 +3,16 @@
 }
 
 body {
-	/* background-color: #6a7e9c;*/
 	background: url('./img/gp.png');
-	font-family: 'Calibri', 'Roboto', sans-serif;
+	background-repeat: no-repeat;
+  	background-size: cover;
 }
 
-.row.padded_row,
+/* .row.padded_row,
 .row.padded_row > div {
 	padding-top: 20px;
 	padding-bottom: 20px;
-}
+} */
 
 /* layout and common global classes */
 /* ---------------------------------------------------------------------- */
@@ -20,21 +20,11 @@ body {
 .chat_window {
 	border-radius: 10px;
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-	background-color: #e1c2c2;
+	/* background-color: #ebef72; */
 	overflow: hidden;
 }
 
-.top_menu {
-	background-color: #fff;
-	padding: 13px 0px;
-	box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
-}
 
-.top_menu .title {
-	text-align: center;
-	color: #337ab7;
-	font-size: 20px;
-}
 
 /* messages inside the chatbox */
 /* ---------------------------------------------------------------------- */
@@ -44,7 +34,7 @@ body {
 	list-style: none;
 	padding: 20px 10px 0 10px;
 	margin: 0;
-	height: 500px;
+	height: 300px;
 	overflow: scroll;
 }
 
@@ -76,8 +66,8 @@ body {
 }
 
 .messages .message .text_wrapper {
-	display: inline-block;
-	padding: 20px;
+	padding: 5px;
+	float: right;
 	border-radius: 6px;
 	min-width: 150px;
 	position: relative;
@@ -111,20 +101,20 @@ body {
 	background: url('./img/bot.png');
 }
 
-.messages .message.left .text_wrapper {
-	background-color: #f3eeca;
+/* .messages .message.left .text_wrapper {
+	background-color: #c1a863;
 	margin-left: 20px;
-}
+} */
 
-.messages .message.left .text_wrapper::after,
+/* .messages .message.left .text_wrapper::after,
 .messages .message.left .text_wrapper::before {
 	right: 100%;
-	border-right-color: #f3eeca;
+	border-right-color: #8ab2ba;
 }
 
 .messages .message.left .timestamp {
 	color: #b0742f;
-}
+} */
 
 /* user message */
 
@@ -133,8 +123,8 @@ body {
 	background: url('./img/guy.jpg');
 }
 
-.messages .message.right .text_wrapper {
-	background-color: #b0d4f3;
+/* .messages .message.right .text_wrapper {
+	background-color: #8dc2b5;
 	margin-right: 20px;
 	float: right;
 }
@@ -147,7 +137,7 @@ body {
 
 .messages .message.right .timestamp {
 	color: #1a5770;
-}
+} */
 
 /* text inpur from user */
 
@@ -167,18 +157,7 @@ body {
 	margin-right: 15px;
 }
 
-.app_button_1 {
-	width: 140px;
-	/* background-color: #a3d063; */
-	border-radius: 50px;
-	cursor: pointer;
-	padding: 12px;
 
-	/* color: #fff; */
-	font-size: 18px;
-	font-weight: 300;
-	text-align: center;
-}
 
 /* faq section | right side */
 /* ---------------------------------------------------------------------- */

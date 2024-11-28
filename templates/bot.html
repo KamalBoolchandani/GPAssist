@@ -18,94 +18,145 @@
 
 	<!-- custom css -->
 	<link rel="stylesheet" type="text/css" href="static/main.css">
+	<style>
+	/* Button used to open the chat form - fixed at the bottom of the page */
+	.open-button {
+		/* background-color: #555; */
+		/* color: white; */
+		/* padding: 16px 20px; */
+		border: none;
+		cursor: pointer;
+		opacity: 0.8;
+		position: fixed;
+		bottom: 23px;
+		right: 28px;
+		/* width: 280px; */
+	}
+
+	/* The popup chat - hidden by default */
+	.chat-popup {
+		display: none;
+		position: fixed;
+		bottom: 0;
+		right: 15px;
+		border: 3px solid #f1f1f1;
+		z-index: 9;
+	}
+
+	/* Add styles to the form container */
+	.form-container {
+		max-width: 400px;
+		/* padding: 10px; */
+		background-color: white;
+	}
+
+	/* Full-width textarea */
+	.form-container textarea {
+		width: 100%;
+		padding: 15px;
+		margin: 5px 0 22px 0;
+		border: none;
+		background: #f1f1f1;
+		resize: none;
+		min-height: 200px;
+	}
+
+	/* When the textarea gets focus, do something */
+	.form-container textarea:focus {
+		background-color: #ddd;
+		outline: none;
+	}
+
+	/* Set a style for the submit/send button */
+	.form-container .btn {
+		background-color: #0253ec;
+		color: white;
+		padding: 6px 5px;
+		border: none;
+		cursor: pointer;
+		border-radius: 50px;
+		margin-bottom:10px;
+		opacity: 0.8;
+	}
+
+	/* Add a red background color to the cancel button */
+	.form-container .cancel {
+		background-color: red;
+	}
+
+	/* Add some hover effects to buttons */
+	.form-container .btn:hover, .open-button:hover {
+		opacity: 1;
+	}
+	.top_menu {
+		background-color: #0253ec;
+		padding: 10px 0px;
+		box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
+	}
+
+	.top_menu .title {
+		text-align: center;
+		color: #fff;
+		font-size: 20px;
+	}
+	.btn-close{
+		background: none;
+		border: none;
+	}
+	.header-img{
+		width: 100%;
+	}
+</style>
 
 </head>
 
 <body>
-
 	<div class="container">
-
-		<div class="row padded_row">
-
-			<!-- left side content -->
-			<div class="col-md-5">
-				<div class="chat_window">
-
-					<div class="top_menu">
-						<div class="title">Help</div>
-					</div>
-
-					<!-- help container -->
-					<div class="panel-group" id="accordion">
-
-						<!-- help - 1 -->
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
-										href="#collapse1">Lorem ipsum</a>
-								</h4>
-							</div>
-							<div id="collapse1" class="panel-collapse collapse in">
-								<div class="panel-body">
-									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-									mollit anim id est laborum
-									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-									mollit anim id est laborum
-									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-									mollit anim id est laborum
-									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-									mollit anim id est laborum
-									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-									mollit anim id est laborum
-
-									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-									mollit anim id est laborumExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-									mollit anim id est laborum
+		<header class="d-flex justify-content-center py-3">
+		  <img src="./../static/img/header.png" class="header-img">
+		</header>
+	  </div>
 
 
-									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-									mollit anim id est laborum
-									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-									mollit anim id est laborum
-									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-									mollit anim id est laborum
-								</div>
-							</div>
-						</div>
+	<button class="open-button" onclick="openForm()">
+		<img src="./static/img/bot.png" style="width:100px;height:100px">
+	</button>
 
-					</div>
+	<div class="chat-popup" id="myForm">
+	<form action="/action_page.php" class="form-container">
+		
+		<div class="chat_window">
 
+			<div class="top_menu">
+				<div class="title">Hello Team GP!!!
+					<button type="button" class="btn-close pull-right" data-bs-dismiss="modal" title="Close" aria-label="Close" onclick="closeForm()">X</button>
 				</div>
+				
 			</div>
 
+			<!-- dynamically rendered -->
+			<ul class="messages"></ul>
 
-			<!-- right side content -->
-			<div class="col-md-7">
-
-				<div class="chat_window">
-
-					<div class="top_menu">
-						<div class="title">GPAssist - Bot</div>
-					</div>
-
-					<!-- dynamically rendered -->
-					<ul class="messages"></ul>
-
-					<!-- input -->
-					<div class="bottom_wrapper">
-						<input id="user_input" name="user_input" placeholder="Say Hi to begin chat..." />
-						<div id="send_button" class="app_button_1 btn btn-primary">Send</div>
-					</div>
-
-				</div>
-
+			<!-- input -->
+			<div class="bottom_wrapper">
+				<input id="user_input" name="user_input" placeholder="Hello, how can I assist you today?..." required />
+				<div id="send_button" class="app_button_1 btn btn-primary .btn-list">
+					<img src="./static/img/chat-send.png" style="width:20px;height:20px"></div>
 			</div>
 
-			
 		</div>
-
+	</form>
 	</div>
+
+	<script>
+	function openForm() {
+		document.getElementById("myForm").style.display = "block";
+	}
+
+	function closeForm() {
+		document.getElementById("myForm").style.display = "none";
+	}
+	</script>
 
 	<!-- vendor script files -->
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
