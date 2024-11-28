@@ -3,7 +3,8 @@
 }
 
 body {
-	background-color: #edeff2;
+	/* background-color: #6a7e9c;*/
+	background: url('./img/gp.png');
 	font-family: 'Calibri', 'Roboto', sans-serif;
 }
 
@@ -19,7 +20,7 @@ body {
 .chat_window {
 	border-radius: 10px;
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-	background-color: #f8f8f8;
+	background-color: #e1c2c2;
 	overflow: hidden;
 }
 
@@ -107,7 +108,7 @@ body {
 
 .messages .message.left .avatar {
 	float: left;
-	background: url('./img/bot.jpg');
+	background: url('./img/bot.png');
 }
 
 .messages .message.left .text_wrapper {
@@ -168,12 +169,12 @@ body {
 
 .app_button_1 {
 	width: 140px;
-	background-color: #a3d063;
+	/* background-color: #a3d063; */
 	border-radius: 50px;
 	cursor: pointer;
 	padding: 12px;
 
-	color: #fff;
+	/* color: #fff; */
 	font-size: 18px;
 	font-weight: 300;
 	text-align: center;

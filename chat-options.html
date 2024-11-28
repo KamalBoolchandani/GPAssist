@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatbot with Multiple Options - Bootstrap</title>
+  <!-- Bootstrap 4/5 CDN for styling -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f4f6f9;
+    }
+    .chat-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      height: 500px;
+      overflow-y: auto;
+    }
+    .chat-box {
+      display: flex;
+      flex-direction: column;
+    }
+    .message {
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+      background-color: #e1e1e1;
+    }
+    .user-message {
+      align-self: flex-end;
+      background-color: #cce5ff;
+    }
+    .bot-message {
+      align-self: flex-start;
+      background-color: #f1f1f1;
+    }
+    .options button {
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+    
+  <div class="container my-5">
+    <div class="chat-container">
+      <div class="chat-box" id="chat-box">
+        <!-- Chat messages will appear here -->
+      </div>
+      <div id="options-container" class="options">
+        <!-- Option buttons will appear here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+  <script>
+    // Chatbot state (to track conversation)
+    let currentStep = 0;
+    
+    // Define conversation steps
+    const conversationSteps = [
+      {
+        message: "Hi there! How can I help you today?",
+        options: ["Learn about our services", "Product support", "Other inquiries"],
+        nextSteps: [1, 2, 3],
+      },
+      {
+        message: "We offer services like web development, mobile apps, and marketing. Would you like more information on any of these?",
+        options: ["Web Development", "Mobile Apps", "Marketing", "No, thanks"],
+        nextSteps: [4, 5, 6, 7],
+      },
+      {
+        message: "For product support, please tell me what issue you're facing.",
+        options: [],
+        nextSteps: [8],
+      },
+      {
+        message: "What else can I assist you with today?",
+        options: [],
+        nextSteps: [],
+      },
+      {
+        message: "Web development services include website design and full-stack applications. Would you like to get a quote?",
+        options: ["Yes", "No"],
+        nextSteps: [9, 10],
+      },
+      {
+        message: "Mobile apps can be developed for both iOS and Android. Would you like to know more?",
+        options: ["Yes", "No"],
+        nextSteps: [11, 10],
+      },
+      {
+        message: "Our marketing services include SEO, social media management, and content creation. Would you like to get a consultation?",
+        options: ["Yes", "No"],
+        nextSteps: [12, 10],
+      },
+      {
+        message: "Please describe the issue you're facing with the product.",
+        options: [],
+        nextSteps: [],
+      },
+      {
+        message: "Thanks for your interest! We’ll reach out to you soon with a quote.",
+        options: [],
+        nextSteps: [],
+      },
+      {
+        message: "Feel free to reach out anytime if you change your mind!",
+        options: [],
+        nextSteps: [],
+      },
+      {
+        message: "Thanks for your time! Feel free to explore our other services.",
+        options: [],
+        nextSteps: [],
+      },
+    ];
+
+    // Display a message in the chat
+    function displayMessage(message, sender) {
+      const chatBox = document.getElementById('chat-box');
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('message');
+      messageDiv.classList.add(sender === "user" ? 'user-message' : 'bot-message');
+      messageDiv.textContent = message;
+      chatBox.appendChild(messageDiv);
+      chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the bottom
+    }
+
+    // Display options as buttons
+    function displayOptions(options, nextSteps) {
+      const optionsContainer = document.getElementById('options-container');
+      optionsContainer.innerHTML = ""; // Clear previous options
+      options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.classList.add('btn', 'btn-primary', 'w-100', 'my-2');
+        button.textContent = option;
+        button.onclick = () => handleOptionClick(index, nextSteps);
+        optionsContainer.appendChild(button);
+      });
+    }
+
+    // Handle user option click
+    function handleOptionClick(index, nextSteps) {
+      currentStep = nextSteps[index];
+      const currentConversation = conversationSteps[currentStep];
+      displayMessage(currentConversation.message, "bot");
+
+      if (currentConversation.options.length > 0) {
+        displayOptions(currentConversation.options, currentConversation.nextSteps);
+      } else {
+        displayMessage("Thank you for chatting! Feel free to reach out if you need further assistance.", "bot");
+      }
+    }
+
+    // Start the conversation
+    function startConversation() {
+      const currentConversation = conversationSteps[currentStep];
+      displayMessage(currentConversation.message, "bot");
+
+      if (currentConversation.options.length > 0) {
+        displayOptions(currentConversation.options, currentConversation.nextSteps);
+      }
+    }
+
+    // Initialize chatbot
+    startConversation();
+  </script>
+</body>
+</html>

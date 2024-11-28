@@ -125,5 +125,13 @@ function randomstring(length = 20) {
  * Set initial bot message to the screen for the user.
  */
 $(window).on('load', function () {
-	showBotMessage('Hello there! Type in a message.');
+	let first_message = '<button type="button" class="btn btn-outline-primary">Primary</button>\
+	<button type="button" class="btn btn-outline-secondary">Secondary</button>\
+	<button type="button" class="btn btn-outline-success">Success</button>\
+	<button type="button" class="btn btn-outline-danger">Danger</button>\
+	<button type="button" class="btn btn-outline-warning">Warning</button>\
+	<button type="button" class="btn btn-outline-info">Info</button>\
+	<button type="button" class="btn btn-outline-light">Light</button>\
+	<button type="button" class="btn btn-outline-dark">Dark</button>';
+	showBotMessage(first_message);
 });
