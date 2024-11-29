@@ -125,7 +125,7 @@ $(window).on('load', function () {
 	let first_message = 'Welcome 👋<br/>I am your Personal Assistant, How can I help you?';
 	let button_message = '<button type="button" query="leave balance" class="btn btn-primary btn-list pull-right">Leave Balance</button><br/>\
 	<button type="button" query="apply leave" class="btn btn-secondary btn-list pull-right">Apply Leave</button><br/>\
-	<button type="button" query="provision" class="btn btn-success btn-list pull-right">Deploy Ec2 install on AWS</button>';
+	<button type="button" query="provision" class="btn btn-success btn-list pull-right">Deploy Resources on AWS</button>';
 	showBotMessage(first_message);
 	showUserMessage(button_message);
 });
